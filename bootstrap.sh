@@ -72,6 +72,8 @@ innodb_file_per_table' >> /etc/mysql/my.cnf
 sed -i "48i\\
 bind-address            = 192.168.50.102" /etc/mysql/my.cnf
 
+perl -pi -e 's/www-data/vagrant/g' /etc/nginx/nginx.conf /etc/php/7.0/fpm/pool.d/www.conf
+
 service nginx restart
 service php7.0-fpm restart
 service mysql restart
@@ -82,6 +84,9 @@ echo 'redis-server /etc/redis/redis.conf' > /etc/rc.local
 echo '[client]
 user=root
 password=root' > ~/.my.cnf
+
+mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY PASSWORD 'root' WITH GRANT OPTION;
+GRANT PROXY ON ''@'' TO 'root'@'%' WITH GRANT OPTION;"
 
 cd ~
 
