@@ -85,8 +85,9 @@ echo '[client]
 user=root
 password=root' > ~/.my.cnf
 
-mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY PASSWORD 'root' WITH GRANT OPTION;
-GRANT PROXY ON ''@'' TO 'root'@'%' WITH GRANT OPTION;"
+mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION;
+GRANT PROXY ON ''@'' TO 'root'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;"
 
 cd ~
 
